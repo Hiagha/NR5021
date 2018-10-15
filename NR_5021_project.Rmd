@@ -11,7 +11,7 @@ Cowplot is a package developed to work in tandem with R/ggplot2. From the cowplo
 
 
 ```{r library, message = FALSE}
-library(cowplot, tidyverse)
+library(ggplot2,cowplot, tidyverse)
 ```
 
 ###Load in the data
@@ -29,8 +29,24 @@ First we will make several different plots using solely ggplot2 functions
 
 p <- ggplot(animal, aes(x = order, y = sleep_total)) + theme(axis.text.x = element_text(face = "italic", angle = 90, vjust = 0.5)) + geom_point() + aes(colour = log(bodywt))
 p 
-
+sleep.plot<-ggplot(msleep, aes(x=msleep$sleep_total, y=msleep$bodywt,colour=order))+geom_point()+labs(x="Mean sleep (hours)", y= "Mean body weight (kg)")
+sleep.plot
 
 
 
 ```
+## The cowplot difference
+Notice that in cowplot, the default gray background and grid lines present in ggplot2 are missing. This same design can also be achieved in ggplot using "+ theme_classic"
+
+One unique feature of cowplot is the capacity to add images to your plots. For instance, we can add an image of an elephant to the background. To include this feature, we must first download the package "magick." You can change the size of the background image using "scale="
+```{r}
+#install.packages("magick")
+library(magick)
+library(ggplot2)
+library(cowplot)
+elephant.background<-ggdraw()+draw_image("C://Users/Hannah/Desktop/R/elephant.png",scale=0.8)+draw_plot(sleep.plot)
+elephant.background
+```
+
+```
+
