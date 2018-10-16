@@ -1,6 +1,6 @@
 ---
 title: "NR_5021_project"
-authors: "Husain Agha, James Ostille, Clare Gietzel, Hannah Legatzke"
+authors: "Husain Agha, James Ostlie, Clare Gietzel, Hannah Legatzke"
 date: "10/3/2018"
 output: html_document
 ---
@@ -19,7 +19,17 @@ We are using a data set that is within ggplot2 as well as a dataset collected fr
 
 ```{r data}
 animal <- msleep
-#class <-  
+
+weight <- c(74,63,112,70,55,50,75,59,93,88.64,54.4,84,68.18,130,100,79.54,77,52,79.5,68.2,57.72)
+
+sleep<- c(6,6,6,6.5,6.5,7,7,7,7,7,7,7,7,7,7.25,7.5,7.5,8,8,8,9)
+
+class_sleep <- data_frame(weight,sleep)
+
+class_sleep_summary<- summarize(class_sleep,
+                                mean.sleep = mean(sleep),
+                                mean.weight = mean(weight))
+class_sleep_summary
 ```
 
 ##ggplot2
