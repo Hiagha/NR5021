@@ -77,6 +77,5 @@ Another feature of cowplot is the ability to add a figure label using the "draw_
 p <- ggplot(animal, aes(x = order, y = sleep_total)) + theme(axis.text.x = element_text(face = "italic", angle = 90, vjust = 0.5)) + geom_point() + aes(colour = log(bodywt)) 
 ggdraw(p) + draw_label("Draft", colour = "grey", size = 120, angle = 45)
 
-
 ```
 
