@@ -11,7 +11,8 @@ Cowplot is a package developed to work in tandem with R/ggplot2. From the cowplo
 
 
 ```{r library, message = FALSE}
-library(ggplot2,cowplot, tidyverse)
+library(ggplot2,cowplot)
+library(tidyverse)
 ```
 
 ###Load in the data
@@ -54,9 +55,24 @@ One unique feature of cowplot is the capacity to add images to your plots. For i
 library(magick)
 library(ggplot2)
 library(cowplot)
-elephant.background<-ggdraw()+draw_image("C://Users/Hannah/Desktop/R/elephant.png",scale=0.8)+draw_plot(sleep.plot)
+elephant<-image_read('https://github.com/Hiagha/NR5021/blob/master/elephant.png?raw=true')
+elephant.background<-ggdraw()+draw_image(elephant,scale=0.8)+draw_plot(sleep.plot)
 elephant.background
 ```
-
+## Labeling
+You can also use cowplot to add labels to plots. The x and y axis denote where you want the label to appear on the plot.
+```{r}
+elephant.background+draw_label("Image publically available from pngimg.com", x=0.5, y=0.9, size=12, fontface = "italic")
 ```
+
+## Comparing plots
+Say we wanted to look at the animal sleep data set without the elephant data points, which are the mammals with the two largest masses in the data set. We can create a new data set without this point and plot the Mass vs. Mean Sleep as before
+
+```{r}
+no.elephant.animal<-animal[-36,]
+#View(no.elephant.animal)
+no.elephant.sleep.plot<-ggplot(no.elephant.animal, aes(x=no.elephant.animal$sleep_total, y=no.elephant.animal$bodywt,colour=order))+geom_point()+labs(x="Mean sleep (hours)", y= "Mean body weight (kg)")
+no.elephant.sleep.plot
+```
+
 
