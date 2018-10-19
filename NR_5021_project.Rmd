@@ -25,12 +25,25 @@ weight <- c(74,63,112,70,55,50,75,59,93,88.64,54.4,84,68.18,130,100,79.54,77,52,
 
 sleep<- c(6,6,6,6.5,6.5,7,7,7,7,7,7,7,7,7,7.25,7.5,7.5,8,8,8,9)
 
-class_sleep <- data_frame(weight,sleep)
+class_sleep <- data.frame(weight,sleep)
 
 class_sleep_summary<- summarize(class_sleep,
                                 mean.sleep = mean(sleep),
                                 mean.weight = mean(weight))
 class_sleep_summary
+
+## Now we will add our class data to the msleep dataset. 
+name<- "Class"
+class.sleep<- cbind(class_sleep_summary,name)
+
+class.sleep<- data.frame(class.sleep$name,class.sleep$mean.sleep,class.sleep$mean.weight)
+names(class.sleep) <- c("msleep.name", "msleep.sleep_total", "msleep.bodywt")
+new.msleep <- data.frame(msleep$name, msleep$sleep_total, msleep$bodywt)
+
+new.msleep.class<- rbind(new.msleep, class.sleep)
+
+msleep.hist <- ggplot(new.msleep.class, aes(x=msleep.sleep_total)) + geom_histogram(binwidth=1)
+msleep.hist
 ```
 
 ##ggplot2
@@ -43,8 +56,6 @@ p
 sleep.plot<-ggplot(msleep, aes(x=msleep$sleep_total, y=msleep$bodywt,colour=order))+geom_point()+labs(x="Mean sleep (hours)", y= "Mean body weight (kg)")
 sleep.plot
 
-
-
 ```
 ## The cowplot difference
 Notice that in cowplot, the default gray background and grid lines present in ggplot2 are missing. This same design can also be achieved in ggplot using "+ theme_classic"
@@ -52,12 +63,20 @@ Notice that in cowplot, the default gray background and grid lines present in gg
 One unique feature of cowplot is the capacity to add images to your plots. For instance, we can add an image of an elephant to the background. To include this feature, we must first download the package "magick." You can change the size of the background image using "scale="
 ```{r}
 #install.packages("magick")
+<<<<<<< HEAD
 library(magick)
 library(ggplot2)
 library(cowplot)
 elephant<-image_read('https://github.com/Hiagha/NR5021/blob/master/elephant.png?raw=true')
 elephant.background<-ggdraw()+draw_image(elephant,scale=0.8)+draw_plot(sleep.plot)
 elephant.background
+=======
+#library(magick)
+#library(ggplot2)
+#library(cowplot)
+#elephant.background<-ggdraw()+draw_image("C://Users/Hannah/Desktop/R/elephant.png",scale=0.8)+draw_plot(sleep.plot)
+#elephant.background
+>>>>>>> fd101526d5176bd139b6fdbd316429601e7d3356
 ```
 ## Labeling
 You can also use cowplot to add labels to plots. The x and y axis denote where you want the label to appear on the plot.
@@ -68,11 +87,22 @@ elephant.background+draw_label("Image publically available from pngimg.com", x=0
 ## Comparing plots
 Say we wanted to look at the animal sleep data set without the elephant data points, which are the mammals with the two largest masses in the data set. We can create a new data set without this point and plot the Mass vs. Mean Sleep as before
 
+<<<<<<< HEAD
 ```{r}
 no.elephant.animal<-animal[-36,]
 #View(no.elephant.animal)
 no.elephant.sleep.plot<-ggplot(no.elephant.animal, aes(x=no.elephant.animal$sleep_total, y=no.elephant.animal$bodywt,colour=order))+geom_point()+labs(x="Mean sleep (hours)", y= "Mean body weight (kg)")
 no.elephant.sleep.plot
+=======
+Another feature of cowplot is the ability to add a figure label using the "draw_figure-label()" function.
+
+````{r}  
+#p1<-ggdraw(p) + draw_figure_label(label = "Figure 1", position = "bottom.right", size = 10)
+
+p <- ggplot(animal, aes(x = order, y = sleep_total)) + theme(axis.text.x = element_text(face = "italic", angle = 90, vjust = 0.5)) + geom_point() + aes(colour = log(bodywt)) 
+ggdraw(p) + draw_label("Draft", colour = "grey", size = 120, angle = 45)
+
+>>>>>>> fd101526d5176bd139b6fdbd316429601e7d3356
 ```
 
 
