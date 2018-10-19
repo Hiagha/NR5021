@@ -24,12 +24,23 @@ weight <- c(74,63,112,70,55,50,75,59,93,88.64,54.4,84,68.18,130,100,79.54,77,52,
 
 sleep<- c(6,6,6,6.5,6.5,7,7,7,7,7,7,7,7,7,7.25,7.5,7.5,8,8,8,9)
 
-class_sleep <- data_frame(weight,sleep)
+class_sleep <- data.frame(weight,sleep)
 
 class_sleep_summary<- summarize(class_sleep,
                                 mean.sleep = mean(sleep),
                                 mean.weight = mean(weight))
 class_sleep_summary
+
+## Now we will add our class data to the msleep dataset. 
+name<- "Class"
+class.sleep<- cbind(class_sleep_summary,name)
+
+class.sleep<- data.frame(class.sleep$name,class.sleep$mean.sleep,class.sleep$mean.weight)
+names(class.sleep) <- c("msleep.name", "msleep.sleep_total", "msleep.bodywt")
+new.msleep <- data.frame(msleep$name, msleep$sleep_total, msleep$bodywt)
+
+new.msleep.class<- rbind(new.msleep, class.sleep)
+
 ```
 
 ##ggplot2
