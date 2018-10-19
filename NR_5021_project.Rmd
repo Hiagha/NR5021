@@ -41,6 +41,8 @@ new.msleep <- data.frame(msleep$name, msleep$sleep_total, msleep$bodywt)
 
 new.msleep.class<- rbind(new.msleep, class.sleep)
 
+msleep.hist <- ggplot(new.msleep.class, aes(x=msleep.sleep_total)) + geom_histogram(binwidth=1)
+msleep.hist
 ```
 
 ##ggplot2
