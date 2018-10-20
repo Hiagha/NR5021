@@ -11,8 +11,7 @@ Cowplot is a package developed to work in tandem with R/ggplot2. From the cowplo
 
 
 ```{r library, message = FALSE}
-library(ggplot2,cowplot)
-library(tidyverse)
+library(tidyverse); library(cowplot)
 ```
 
 ###Load in the data
@@ -52,7 +51,7 @@ msleep.hist <- ggplot(new.msleep.class, aes(x=msleep.sleep_total)) + geom_histog
 msleep.hist #Creates a histogram for hours of sleep for both the msleep and the class data
 p <- ggplot(animal, aes(x = order, y = sleep_total)) + theme(axis.text.x = element_text(face = "italic", angle = 90, vjust = 0.5)) + geom_point() + aes(colour = log(bodywt))
 p 
-sleep.plot<-ggplot(msleep, aes(x=msleep$sleep_total, y=msleep$bodywt,colour=order))+geom_point()+labs(x="Mean sleep (hours)", y= "Mean body weight (kg)")
+sleep.plot<-ggplot(msleep, aes(x=msleep$sleep_total, y=msleep$bodywt,colour=order)) + geom_point() + labs(x="Mean sleep (hours)", y= "Mean body weight (kg)")
 sleep.plot
 
 ```
@@ -63,8 +62,8 @@ One unique feature of cowplot is the capacity to add images to your plots. For i
 ```{r}
 #install.packages("magick")
 library(magick)
-elephant<-image_read('https://github.com/Hiagha/NR5021/blob/master/elephant.png?raw=true')
-elephant.background<-ggdraw()+draw_image(elephant,scale=0.8)+draw_plot(sleep.plot)
+elephant <- image_read('https://github.com/Hiagha/NR5021/blob/master/elephant.png?raw=true')
+elephant.background <- ggdraw() + draw_image(elephant,scale=0.8) + draw_plot(sleep.plot)
 elephant.background
 ```
 ## Labeling
@@ -77,15 +76,36 @@ elephant.background+draw_label("Image publically available from pngimg.com", x=0
 Say we wanted to look at the animal sleep data set without the elephant data points, which are the mammals with the two largest masses in the data set. We can create a new data set without these points and plot the Mass vs. Mean Sleep as before
 <<<<<<< HEAD
 ```{r}
-no.elephant.animal<-animal[-c(21,36),] #This code gets rid of rows 21 and 36 in the animal data set, corresponding to the two elephants (African and Asian)
+no.elephant.animal <- animal[-c(21,36),] #This code gets rid of rows 21 and 36 in the animal data set, corresponding to the two elephants (African and Asian)
 #View(no.elephant.animal) #This code lets us view the new data table to confirm that the rows with the elephant information are eliminated
-no.elephant.sleep.plot<-ggplot(no.elephant.animal, aes(x=no.elephant.animal$sleep_total, y=no.elephant.animal$bodywt,colour=order))+geom_point()+labs(x="Mean sleep (hours)", y= "Mean body weight (kg)")
+no.elephant.sleep.plot <- ggplot(no.elephant.animal, aes(x=no.elephant.animal$sleep_total, y=no.elephant.animal$bodywt,colour=order)) + geom_point() + labs(x="Mean sleep (hours)", y= "Mean body weight (kg)")
 no.elephant.sleep.plot
 ```
 ## Combining plots
-Another advantage of cowplot is that it can combine plots into a grid or other arrangements. We can specify the size of each plot and where we want it to appear. For example, we can insert the a smaller mammal mean sleep vs. mean body mass plot by a larger version of the same plot that excludes the elephant data points. To do this, we will again use the ggdraw() and draw_plot functions of cowplot. We will also remove the legend for the smaller plot and place the legend on the left for the larger plot to make it easier to view both graphs. 
+Another advantage of cowplot is that it can combine plots into a grid or other arrangements. We can specify the size of each plot and where we want it to appear. For example, we can insert the smaller mammal mean sleep vs. mean body mass plot by a larger version of the same plot that excludes the elephant data points. To do this, we will again use the ggdraw() and draw_plot functions of cowplot. We will also remove the legend for the smaller plot and place the legend on the left for the larger plot to make it easier to view both graphs. 
 ```{r}
-ggdraw()+draw_plot(no.elephant.sleep.plot+theme(legend.position = "left"))+draw_plot(sleep.plot+theme(legend.position = "none"), 0.6,0.5,0.4,0.4)
+ggdraw() + draw_plot(no.elephant.sleep.plot + theme(legend.position = "left")) + draw_plot(sleep.plot + theme(legend.position = "none"), 0.6,0.5,0.4,0.4)
 ```
+
+## Presentation ready plots
+Cowplot also allows for multiple plots to put plotted gridwise with labels and then saved as a single object. This is very useful when getting plots ready for presentation or publication. Cowplot improves the functionality of *ggsave( )* and makes it possible to save these combined plots as a single object.
+
+
+
+```{r}
+side.by.side <- plot_grid(p, msleep.hist, labels = c("A", "B"), align = "hv", axis = "tb")
+side.by.side
+
+# We can also save our combined plots using ggsave(), setting appropriate height/width and DPI for whatever project you are working on.
+
+four.plot <- plot_grid(sleep.plot, no.elephant.sleep.plot, p, msleep.hist, labels = c("A", "B", "C", "D"), align = "hv", axis = "tblr")
+ggsave("fourplot.png", four.plot, width = 10, height = 12)
+
+plots <- image_read("fourplot.png")
+ggdraw() + draw_image(plots)
+
+
+```
+
 
 
