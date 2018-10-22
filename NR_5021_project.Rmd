@@ -11,6 +11,7 @@ Cowplot is a package developed to work in tandem with R/ggplot2. From the cowplo
 
 
 ```{r library, message = FALSE}
+#install.packages("cowplot")
 library(tidyverse); library(cowplot)
 ```
 
@@ -47,8 +48,9 @@ new.msleep.class<- rbind(new.msleep, class.sleep)
 First we will make several different plots using solely ggplot2 functions
 
 ```{r ggplot}
-msleep.hist <- ggplot(new.msleep.class, aes(x=msleep.sleep_total)) + geom_histogram(binwidth=1)
+msleep.hist <- ggplot(new.msleep.class, aes(x=msleep.sleep_total)) + geom_histogram(binwidth=1, aes(fill=..count..)) + labs(title="Mammal and Class Sleep") + xlab("Total Hours of Sleep")
 msleep.hist #Creates a histogram for hours of sleep for both the msleep and the class data
+
 p <- ggplot(animal, aes(x = order, y = sleep_total)) + theme(axis.text.x = element_text(face = "italic", angle = 90, vjust = 0.5)) + geom_point() + aes(colour = log(bodywt))
 p 
 sleep.plot<-ggplot(msleep, aes(x=msleep$sleep_total, y=msleep$bodywt,colour=order)) + geom_point() + labs(x="Mean sleep (hours)", y= "Mean body weight (kg)")
@@ -70,6 +72,10 @@ elephant.background
 You can also use cowplot to add labels to plots. The x and y axis denote where you want the label to appear on the plot.
 ```{r}
 elephant.background+draw_label("Image publically available from pngimg.com", x=0.5, y=0.9, size=12, fontface = "italic")
+
+##Let's add a label to our histogram to denote the location of the mean class sleep total with respect to all mammal sleep totals.
+
+msleep.hist + draw_label("(*) = Class mean sleep (7.1 hours)", x=10, y=10, size=10,fontface="plain") + draw_label("*", x=7.1,y=2.1,size=20,fontface="bold")
 ```
 
 ## Comparing plots
