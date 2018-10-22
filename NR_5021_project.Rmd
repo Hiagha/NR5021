@@ -105,7 +105,7 @@ side.by.side
 
 # We can also save our combined plots using ggsave(), setting appropriate height/width and DPI for whatever project you are working on.
 
-four.plot <- plot_grid(sleep.plot, no.elephant.sleep.plot, p, msleep.hist, labels = c("A", "B", "C", "D"), align = "hv", axis = "tblr")
+four.plot <- plot_grid(sleep.plot, no.elephant.sleep.plot, p, sleep.hist, labels = c("A", "B", "C", "D"), align = "hv", axis = "tblr")
 ggsave("fourplot.png", four.plot, width = 10, height = 12)
 
 plots <- image_read("fourplot.png")
