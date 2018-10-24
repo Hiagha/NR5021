@@ -12,7 +12,7 @@ Cowplot is a package developed to work in tandem with R/ggplot2. From the cowplo
 
 ```{r library, message = FALSE}
 #install.packages("cowplot")
-library(tidyverse); library(cowplot)
+library(tidyverse); library(ggplot2)
 ```
 
 ###Load in the data
@@ -62,6 +62,7 @@ Notice that in cowplot, the default gray background and grid lines present in gg
 
 One unique feature of cowplot is the capacity to add images to your plots. For instance, we can add an image of an elephant to the background. To include this feature, we must first download the package "magick." You can change the size of the background image using "scale="
 ```{r}
+library(cowplot)
 #install.packages("magick")
 library(magick)
 elephant <- image_read('https://github.com/Hiagha/NR5021/blob/master/elephant.png?raw=true')
