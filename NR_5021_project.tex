@@ -1,0 +1,382 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={NR\_5021\_project},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\newcommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{NR\_5021\_project}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+    \author{}
+    \preauthor{}\postauthor{}
+      \predate{\centering\large\emph}
+  \postdate{\par}
+    \date{10/3/2018}
+
+
+\begin{document}
+\maketitle
+
+\section{Better Know an R Package}\label{better-know-an-r-package}
+
+\subsection{R/Cowplot}\label{rcowplot}
+
+Cowplot is a package developed to work in tandem with R/ggplot2. From
+the cowplot cran page, ``The cowplot package is a simple add-on to
+ggplot2. It is meant to provide a publication-ready theme for ggplot2,
+one that requires a minimum amount of fiddling with sizes of axis
+labels, plot backgrounds, etc.''
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#install.packages("cowplot")}
+\KeywordTok{library}\NormalTok{(tidyverse); }\KeywordTok{library}\NormalTok{(ggplot2)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Load in the data}\label{load-in-the-data}
+
+We are using a data set that is within ggplot2 as well as a dataset
+collected from class responses. The data set from ggplot2 is called
+``msleep'' and records average sleep data, taxonomy, diet information,
+and brain and body weight for 83 mammal species. The class data includes
+reported hours of sleep and body weight in kilograms.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{animal <-}\StringTok{ }\NormalTok{msleep}
+
+\NormalTok{weight <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{74}\NormalTok{,}\DecValTok{63}\NormalTok{,}\DecValTok{112}\NormalTok{,}\DecValTok{70}\NormalTok{,}\DecValTok{55}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{75}\NormalTok{,}\DecValTok{59}\NormalTok{,}\DecValTok{93}\NormalTok{,}\FloatTok{88.64}\NormalTok{,}\FloatTok{54.4}\NormalTok{,}\DecValTok{84}\NormalTok{,}\FloatTok{68.18}\NormalTok{,}\DecValTok{130}\NormalTok{,}\DecValTok{100}\NormalTok{,}\FloatTok{79.54}\NormalTok{,}\DecValTok{77}\NormalTok{,}\DecValTok{52}\NormalTok{,}\FloatTok{79.5}\NormalTok{,}\FloatTok{68.2}\NormalTok{,}\FloatTok{57.72}\NormalTok{)}
+
+\NormalTok{sleep<-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{6}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{6}\NormalTok{,}\FloatTok{6.5}\NormalTok{,}\FloatTok{6.5}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{7}\NormalTok{,}\FloatTok{7.25}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\FloatTok{7.5}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{)}
+
+\NormalTok{class_sleep <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(weight,sleep)}
+
+\NormalTok{class_sleep_summary<-}\StringTok{ }\KeywordTok{summarize}\NormalTok{(class_sleep,}
+                                \DataTypeTok{mean.sleep =} \KeywordTok{mean}\NormalTok{(sleep),}
+                                \DataTypeTok{mean.weight =} \KeywordTok{mean}\NormalTok{(weight))}
+\NormalTok{class_sleep_summary}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   mean.sleep mean.weight
+## 1   7.107143    75.72286
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{## Now we will add our class data to the msleep dataset. }
+\NormalTok{name<-}\StringTok{ "Class"}
+\NormalTok{class.sleep<-}\StringTok{ }\KeywordTok{cbind}\NormalTok{(class_sleep_summary,name)}
+
+\NormalTok{class.sleep<-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(class.sleep}\OperatorTok{$}\NormalTok{name,class.sleep}\OperatorTok{$}\NormalTok{mean.sleep,class.sleep}\OperatorTok{$}\NormalTok{mean.weight)}
+\KeywordTok{names}\NormalTok{(class.sleep) <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{"msleep.name"}\NormalTok{, }\StringTok{"msleep.sleep_total"}\NormalTok{, }\StringTok{"msleep.bodywt"}\NormalTok{)}
+\NormalTok{new.msleep <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(msleep}\OperatorTok{$}\NormalTok{name, msleep}\OperatorTok{$}\NormalTok{sleep_total, msleep}\OperatorTok{$}\NormalTok{bodywt)}
+
+\NormalTok{new.msleep.class<-}\StringTok{ }\KeywordTok{rbind}\NormalTok{(new.msleep, class.sleep)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{ggplot2}\label{ggplot2}
+
+First we will make several different plots using solely ggplot2
+functions
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{msleep.hist <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(new.msleep.class, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{msleep.sleep_total)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_histogram}\NormalTok{(}\DataTypeTok{binwidth=}\DecValTok{1}\NormalTok{, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{fill=}\NormalTok{..count..)) }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{title=}\StringTok{"Mammal and Class Sleep"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{xlab}\NormalTok{(}\StringTok{"Total Hours of Sleep"}\NormalTok{)}
+\NormalTok{msleep.hist }\CommentTok{#Creates a histogram for hours of sleep for both the msleep and the class data}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/ggplot-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(animal, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ order, }\DataTypeTok{y =}\NormalTok{ sleep_total)) }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{axis.text.x =} \KeywordTok{element_text}\NormalTok{(}\DataTypeTok{face =} \StringTok{"italic"}\NormalTok{, }\DataTypeTok{angle =} \DecValTok{90}\NormalTok{, }\DataTypeTok{vjust =} \FloatTok{0.5}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{colour =} \KeywordTok{log}\NormalTok{(bodywt))}
+\NormalTok{p }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/ggplot-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sleep.plot<-}\KeywordTok{ggplot}\NormalTok{(msleep, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{msleep}\OperatorTok{$}\NormalTok{sleep_total, }\DataTypeTok{y=}\NormalTok{msleep}\OperatorTok{$}\NormalTok{bodywt,}\DataTypeTok{colour=}\NormalTok{order)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"Mean sleep (hours)"}\NormalTok{, }\DataTypeTok{y=} \StringTok{"Mean body weight (kg)"}\NormalTok{)}
+\NormalTok{sleep.plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/ggplot-3.pdf} \#\#
+The cowplot difference Notice that in cowplot, the default gray
+background and grid lines present in ggplot2 are missing. A similar
+design can also be achieved in ggplot using ``+ theme\_classic''
+
+One unique feature of cowplot is the capacity to add images to your
+plots. For instance, we can add an image of an elephant to the
+background. To include this feature, we must first download the package
+``magick.'' You can change the size of the background image using
+``scale=''. Before we can use cowplot, we still have to have a basic
+understanding of ggplot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(cowplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'cowplot'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:ggplot2':
+## 
+##     ggsave
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#install.packages("magick")}
+\KeywordTok{library}\NormalTok{(magick)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Linking to ImageMagick 6.9.9.14
+## Enabled features: cairo, freetype, fftw, ghostscript, lcms, pango, rsvg, webp
+## Disabled features: fontconfig, x11
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{elephant <-}\StringTok{ }\KeywordTok{image_read}\NormalTok{(}\StringTok{'https://github.com/Hiagha/NR5021/blob/master/elephant.png?raw=true'}\NormalTok{)}
+\NormalTok{elephant.background <-}\StringTok{ }\KeywordTok{ggdraw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{draw_image}\NormalTok{(elephant,}\DataTypeTok{scale=}\FloatTok{0.8}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{draw_plot}\NormalTok{(sleep.plot)}
+\NormalTok{elephant.background}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/unnamed-chunk-1-1.pdf}
+\#\# Labeling You can also use cowplot to add labels to plots. The x and
+y axis denote where you want the label to appear on the plot. One
+limitation of cowplot is that the code can get long as more features,
+like labels, are added to the plot
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{elephant.background}\OperatorTok{+}\KeywordTok{draw_label}\NormalTok{(}\StringTok{"Image publically available from pngimg.com"}\NormalTok{, }\DataTypeTok{x=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{y=}\FloatTok{0.9}\NormalTok{, }\DataTypeTok{size=}\DecValTok{12}\NormalTok{, }\DataTypeTok{fontface =} \StringTok{"italic"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{##Let's add a label to our histogram to denote the location of the mean class sleep total with respect to all mammal sleep totals.}
+
+\NormalTok{sleep.hist<-}\StringTok{ }\NormalTok{msleep.hist }\OperatorTok{+}\StringTok{ }\KeywordTok{draw_label}\NormalTok{(}\StringTok{"(*) = Class mean sleep (7.1 hours)"}\NormalTok{, }\DataTypeTok{x=}\DecValTok{15}\NormalTok{, }\DataTypeTok{y=}\DecValTok{10}\NormalTok{, }\DataTypeTok{size=}\DecValTok{10}\NormalTok{,}\DataTypeTok{fontface=}\StringTok{"plain"}\NormalTok{) }\OperatorTok{+}\StringTok{ }\KeywordTok{draw_label}\NormalTok{(}\StringTok{"*"}\NormalTok{, }\DataTypeTok{x=}\FloatTok{7.1}\NormalTok{,}\DataTypeTok{y=}\FloatTok{2.1}\NormalTok{,}\DataTypeTok{size=}\DecValTok{20}\NormalTok{,}\DataTypeTok{fontface=}\StringTok{"bold"}\NormalTok{)}
+\NormalTok{sleep.hist}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/unnamed-chunk-2-2.pdf}
+
+\subsection{Comparing plots}\label{comparing-plots}
+
+Say we wanted to look at the animal sleep data set without the elephant
+data points, which are the mammals with the two largest masses in the
+data set. We can create a new data set without these points and plot the
+Mass vs.~Mean Sleep as before
+\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}\textless{}
+HEAD
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{no.elephant.animal <-}\StringTok{ }\NormalTok{animal[}\OperatorTok{-}\KeywordTok{c}\NormalTok{(}\DecValTok{21}\NormalTok{,}\DecValTok{36}\NormalTok{),] }\CommentTok{#This code gets rid of rows 21 and 36 in the animal data set, corresponding to the two elephants (African and Asian)}
+\CommentTok{#View(no.elephant.animal) #This code lets us view the new data table to confirm that the rows with the elephant information are eliminated}
+\NormalTok{no.elephant.sleep.plot <-}\StringTok{ }\KeywordTok{ggplot}\NormalTok{(no.elephant.animal, }\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x=}\NormalTok{no.elephant.animal}\OperatorTok{$}\NormalTok{sleep_total, }\DataTypeTok{y=}\NormalTok{no.elephant.animal}\OperatorTok{$}\NormalTok{bodywt,}\DataTypeTok{colour=}\NormalTok{order)) }\OperatorTok{+}\StringTok{ }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x=}\StringTok{"Mean sleep (hours)"}\NormalTok{, }\DataTypeTok{y=} \StringTok{"Mean body weight (kg)"}\NormalTok{)}
+\NormalTok{no.elephant.sleep.plot}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/unnamed-chunk-3-1.pdf}
+\#\# Combining plots Another advantage of cowplot is that it can combine
+plots into a grid or other arrangements. We can specify the size of each
+plot and where we want it to appear. For example, we can insert the
+smaller mammal mean sleep vs.~mean body mass plot by a larger version of
+the same plot that excludes the elephant data points. To do this, we
+will again use the ggdraw() and draw\_plot functions of cowplot. We will
+also remove the legend for the smaller plot and place the legend on the
+left for the larger plot to make it easier to view both graphs. One
+difficulty with combining plots into layouts besides grid arrangements
+is it can be challenging to anticipate the coordinates where you want
+the plot to appear. Achieving the layout that you want may take some
+trial and error in the code for the coordinates. Here, the first two
+numbers denote where you want the plot on the x and y axis. The second
+set of coordinates show the scales of the x and y axis, respectively
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{ggdraw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{draw_plot}\NormalTok{(no.elephant.sleep.plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"left"}\NormalTok{)) }\OperatorTok{+}\StringTok{ }\KeywordTok{draw_plot}\NormalTok{(sleep.plot }\OperatorTok{+}\StringTok{ }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"none"}\NormalTok{), }\FloatTok{0.6}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\FloatTok{0.4}\NormalTok{,}\FloatTok{0.4}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\subsection{Presentation ready plots}\label{presentation-ready-plots}
+
+Cowplot also allows for multiple plots to put plotted gridwise with
+labels and then saved as a single object. This is very useful when
+getting plots ready for presentation or publication. Cowplot improves
+the functionality of \emph{ggsave( )} and makes it possible to save
+these combined plots as a single object.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{side.by.side <-}\StringTok{ }\KeywordTok{plot_grid}\NormalTok{(p, msleep.hist, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{), }\DataTypeTok{align =} \StringTok{"hv"}\NormalTok{, }\DataTypeTok{axis =} \StringTok{"tb"}\NormalTok{)}
+\NormalTok{side.by.side}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# We can also save our combined plots using ggsave(), setting appropriate height/width and DPI for whatever project you are working on.}
+
+\NormalTok{four.plot <-}\StringTok{ }\KeywordTok{plot_grid}\NormalTok{(sleep.plot, no.elephant.sleep.plot, p, sleep.hist, }\DataTypeTok{labels =} \KeywordTok{c}\NormalTok{(}\StringTok{"A"}\NormalTok{, }\StringTok{"B"}\NormalTok{, }\StringTok{"C"}\NormalTok{, }\StringTok{"D"}\NormalTok{), }\DataTypeTok{align =} \StringTok{"hv"}\NormalTok{, }\DataTypeTok{axis =} \StringTok{"tblr"}\NormalTok{)}
+\KeywordTok{ggsave}\NormalTok{(}\StringTok{"fourplot.png"}\NormalTok{, four.plot, }\DataTypeTok{width =} \DecValTok{10}\NormalTok{, }\DataTypeTok{height =} \DecValTok{12}\NormalTok{)}
+
+\NormalTok{plots <-}\StringTok{ }\KeywordTok{image_read}\NormalTok{(}\StringTok{"fourplot.png"}\NormalTok{)}
+\KeywordTok{ggdraw}\NormalTok{() }\OperatorTok{+}\StringTok{ }\KeywordTok{draw_image}\NormalTok{(plots)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{NR_5021_project_files/figure-latex/unnamed-chunk-5-2.pdf}
+
+\subsection{Contributions}\label{contributions}
+
+James created the class survey, combined the class data with the msleep
+dataset and created the histograms for the combined datasets. Hannah
+created the plots of sleep vs bodyweight associated with the msleep
+dataset and highlighted the cowplot properties of adding photos to a
+figure. She also highlighted the limitations and difficulties of cowplot
+throughout the Rmarkdown document. Husain provided the cowplot expertise
+and highlighted the cowplot functions of adding a subset image within a
+figure, aligning various plots and ensuring the overall figure is
+publication-ready. Clare was responsible for the Flipgrid video
+highlighting the cowplot package and its benefits and limitations.
+
+
+\end{document}
