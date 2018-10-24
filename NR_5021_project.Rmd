@@ -117,5 +117,6 @@ ggdraw() + draw_image(plots)
 
 ```
 
-
+## Contributions 
+James created the class survey, combined the class data with the msleep dataset and created the histograms for the combined datasets. Hannah created the plots of sleep vs bodyweight associated with the msleep dataset and highlighted the cowplot properties of adding photos to a figure. She also highlighted the limitations and difficulties of cowplot throughout the Rmarkdown document. Husain provided the cowplot expertise and highlighted the cowplot functions of adding a subset image within a figure, aligning various plots and ensuring the overall figure is publication-ready. Clare was responsible for the Flipgrid video highlighting the cowplot package and its benefits and limitations.
 
