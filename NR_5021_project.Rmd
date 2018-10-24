@@ -1,8 +1,10 @@
 ---
 title: "NR_5021_project"
-authors: "Husain Agha, James Ostlie, Clare Gietzel, Hannah Legatzke"
 date: "10/3/2018"
-output: html_document
+output:
+  word_document: default
+  html_document: default
+authors: Husain Agha, James Ostlie, Clare Gietzel, Hannah Legatzke
 ---
 
 #Better Know an R Package
@@ -60,7 +62,7 @@ sleep.plot
 ## The cowplot difference
 Notice that in cowplot, the default gray background and grid lines present in ggplot2 are missing. A similar design can also be achieved in ggplot using "+ theme_classic"
 
-One unique feature of cowplot is the capacity to add images to your plots. For instance, we can add an image of an elephant to the background. To include this feature, we must first download the package "magick." You can change the size of the background image using "scale="
+One unique feature of cowplot is the capacity to add images to your plots. For instance, we can add an image of an elephant to the background. To include this feature, we must first download the package "magick." You can change the size of the background image using "scale=". Before we can use cowplot, we still have to have a basic understanding of ggplot
 ```{r}
 library(cowplot)
 #install.packages("magick")
@@ -70,7 +72,7 @@ elephant.background <- ggdraw() + draw_image(elephant,scale=0.8) + draw_plot(sle
 elephant.background
 ```
 ## Labeling
-You can also use cowplot to add labels to plots. The x and y axis denote where you want the label to appear on the plot.
+You can also use cowplot to add labels to plots. The x and y axis denote where you want the label to appear on the plot. One limitation of cowplot is that the code can get long as more features, like labels, are added to the plot
 ```{r}
 elephant.background+draw_label("Image publically available from pngimg.com", x=0.5, y=0.9, size=12, fontface = "italic")
 
@@ -90,7 +92,7 @@ no.elephant.sleep.plot <- ggplot(no.elephant.animal, aes(x=no.elephant.animal$sl
 no.elephant.sleep.plot
 ```
 ## Combining plots
-Another advantage of cowplot is that it can combine plots into a grid or other arrangements. We can specify the size of each plot and where we want it to appear. For example, we can insert the smaller mammal mean sleep vs. mean body mass plot by a larger version of the same plot that excludes the elephant data points. To do this, we will again use the ggdraw() and draw_plot functions of cowplot. We will also remove the legend for the smaller plot and place the legend on the left for the larger plot to make it easier to view both graphs. 
+Another advantage of cowplot is that it can combine plots into a grid or other arrangements. We can specify the size of each plot and where we want it to appear. For example, we can insert the smaller mammal mean sleep vs. mean body mass plot by a larger version of the same plot that excludes the elephant data points. To do this, we will again use the ggdraw() and draw_plot functions of cowplot. We will also remove the legend for the smaller plot and place the legend on the left for the larger plot to make it easier to view both graphs. One difficulty with combining plots into layouts besides grid arrangements is it can be challenging to anticipate the coordinates where you want  the plot to appear. Achieving the layout that you want may take some trial and error in the code for the coordinates.  Here, the first two numbers denote where you want the plot on the x and y axis. The second set of coordinates show the scales of the x and y axis, respectively
 ```{r}
 ggdraw() + draw_plot(no.elephant.sleep.plot + theme(legend.position = "left")) + draw_plot(sleep.plot + theme(legend.position = "none"), 0.6,0.5,0.4,0.4)
 ```
