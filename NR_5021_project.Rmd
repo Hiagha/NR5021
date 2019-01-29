@@ -18,6 +18,8 @@ Cowplot is a package developed to work in tandem with R/ggplot2. From the cowplo
 library(tidyverse); library(ggplot2)
 ```
 
+Hi
+
 ###Load in the data
 We are using a data set that is within ggplot2 as well as a dataset collected from class responses. The data set from ggplot2 is called "msleep" and records average sleep data, taxonomy, diet information, and brain and body weight for 83 mammal species. The class data includes reported hours of sleep and body weight in kilograms. 
 
